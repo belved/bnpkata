@@ -21,6 +21,10 @@ class TimeViewModel {
         return convertTimeToString(date.hours/5, 4)
     }
 
+    fun getSecondsRow(date: Date): String {
+        return if (date.seconds%2 == 0) "Y" else "0"
+    }
+
     private fun convertTimeToString(time: Int, numberOfPosition: Int): String {
         var index = 1
         var stringPosition = ""
