@@ -1,9 +1,23 @@
 package com.example.bnpkata
 
-import android.util.Log
-import java.util.Date
+import androidx.lifecycle.MutableLiveData
+import java.util.*
 
 class TimeViewModel {
+
+    val secondsRow = MutableLiveData<String>()
+    val singleMinutesRow = MutableLiveData<String>()
+    val fiveMinutesRow = MutableLiveData<String>()
+    val singleHoursRow = MutableLiveData<String>()
+    val fiveHoursRow = MutableLiveData<String>()
+
+    fun computeTime(date: Date) {
+        secondsRow.value = getSecondsRow(date)
+        singleMinutesRow.value = getSingleMinutesRow(date)
+        fiveMinutesRow.value = getFiveMinutesRow(date)
+        singleHoursRow.value = getSingleHourRow(date)
+        fiveHoursRow.value = getFiveHoursRow(date)
+    }
 
     fun getSingleMinutesRow(date: Date): String {
         return convertTimeToString( date.minutes%5, 4)
