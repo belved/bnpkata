@@ -13,6 +13,14 @@ class TimeViewModel {
         return convertTimeToString(date.minutes/5, 11)
     }
 
+    fun getSingleHourRow(date: Date): String {
+        return convertTimeToString(date.hours%5, 4)
+    }
+
+    fun getFiveHoursRow(date: Date): String {
+        return convertTimeToString(date.hours/5, 4)
+    }
+
     private fun convertTimeToString(time: Int, numberOfPosition: Int): String {
         var index = 1
         var stringPosition = ""
