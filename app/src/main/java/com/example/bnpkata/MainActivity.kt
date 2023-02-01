@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bnpkata.ImageHelper.displayValue
 import com.example.bnpkata.databinding.ActivityMainBinding
+import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +27,9 @@ class MainActivity : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed(object : Runnable {
             override fun run() {
-                viewModel.computeTime(Date())
+                val date = Date()
+                updateDigitalTime(date)
+                viewModel.computeTime(date)
                 handler.postDelayed(this, 1000)
             }
         },0)
@@ -45,6 +48,10 @@ class MainActivity : AppCompatActivity() {
             (view.getChildAt(index) as? ImageView)?.displayValue(this, value.substring(index, index+1))
             index++
         }
+    }
+
+    private fun updateDigitalTime(date: Date) {
+        binding.digitalTime.text = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(date)
     }
 
     private fun addObserver() {
